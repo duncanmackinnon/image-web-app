@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Classifier</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Image Classification with VGG-19</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="/">Reset</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container mt-4">
+        <form method="POST" enctype="multipart/form-data" class="my-3">
+            <div class="form-group">
+                <input type="file" name="image" class="form-control-file">
+                <button type="submit" class="btn btn-primary mt-2">Classify Image</button>
+            </div>
+        </form>
+
+        {% if img_url %}
+            <div class="image-display">
+                <img src="{{ url_for('static', filename=img_url) }}" alt="Uploaded Image"/>
+                <h3>Prediction: {{ prediction }}</h3>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
